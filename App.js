@@ -11,7 +11,9 @@ import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import React from 'react';
 import HomeScreen from './screens/Homescreen';
+import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import AboutScreen from './screens/Aboutscreen';
+import {Header} from 'react-native-elements';
 
 import {
   SafeAreaView,
@@ -20,13 +22,10 @@ import {
   Text,
   StatusBar,
   Button,
+  Image,
 } from 'react-native';
 
-import {
-  Header,
-  LearnMoreLinks,
-  Colors,
-} from 'react-native/Libraries/NewAppScreen';
+import {LearnMoreLinks, Colors} from 'react-native/Libraries/NewAppScreen';
 
 const appNavigator = createStackNavigator();
 
@@ -51,16 +50,71 @@ const appNavigator = createStackNavigator();
 //   );
 // }
 
-const App: () => React$Node = () => {
+function StackScreen() {
+  return (
+    <appNavigator.Navigator
+      screenOptions={{
+        headerStyle: {
+          backgroundColor: '#f4511e',
+        },
+        headerTintColor: '#fff',
+        headerTitleStyle: {
+          fontWeight: 'bold',
+        },
+      }}>
+      <appNavigator.Screen
+        name="Home"
+        component={HomeScreen}
+        options={{title: 'My home'}}
+      />
+    </appNavigator.Navigator>
+  );
+}
+
+function LogoTitle() {
+  return (
+    <Image
+      style={styles.tinyLogo}
+      source={{
+        uri:
+          'https://pbs.twimg.com/profile_images/575308227916603392/cx-yL1m-_400x400.jpeg',
+      }}
+    />
+  );
+}
+
+// const App: () => React$Node = () => {
+//   return (
+//     <NavigationContainer>
+//       <Header
+//         leftComponent={{icon: 'menu', color: '#fff'}}
+//         centerComponent={{text: 'MY TITLE', style: {color: '#fff'}}}
+//         rightComponent={{icon: 'home', color: '#fff'}}
+//       />
+//       <appNavigator.Navigator initialRouteName="Home">
+//         <appNavigator.Screen name="Home" component={HomeScreen} />
+//         <appNavigator.Screen name="AboutDrake" component={AboutScreen} />
+//       </appNavigator.Navigator>
+//     </NavigationContainer>
+//   );
+// };
+const Tab = createBottomTabNavigator();
+
+function App() {
   return (
     <NavigationContainer>
-      <appNavigator.Navigator initialRouteName="Home">
-        <appNavigator.Screen name="Home" component={HomeScreen} />
-        <appNavigator.Screen name="AboutDrake" component={AboutScreen} />
-      </appNavigator.Navigator>
+      <Header
+        leftComponent={<LogoTitle />}
+        centerComponent={{text: 'A Day in the life', style: {color: '#fff'}}}
+        rightComponent={{color: '#fff'}}
+      />
+      <Tab.Navigator>
+        <Tab.Screen name="Home" component={HomeScreen} />
+        <Tab.Screen name="About Drake" component={AboutScreen} />
+      </Tab.Navigator>
     </NavigationContainer>
   );
-};
+}
 
 const styles = StyleSheet.create({
   scrollView: {
@@ -69,6 +123,10 @@ const styles = StyleSheet.create({
   engine: {
     position: 'absolute',
     right: 0,
+  },
+  tinyLogo: {
+    width: 60,
+    height: 60,
   },
   body: {
     backgroundColor: Colors.white,
