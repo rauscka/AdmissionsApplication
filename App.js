@@ -6,77 +6,115 @@
  * @flow
  */
 
+import 'react-native-gesture-handler';
+import {NavigationContainer} from '@react-navigation/native';
+import {createStackNavigator} from '@react-navigation/stack';
 import React from 'react';
+import HomeScreen from './screens/Homescreen';
+import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
+import AboutScreen from './screens/Aboutscreen';
+import {Header} from 'react-native-elements';
+
 import {
   SafeAreaView,
   StyleSheet,
-  ScrollView,
   View,
   Text,
   StatusBar,
+  Button,
+  Image,
 } from 'react-native';
 
-import {
-  Header,
-  LearnMoreLinks,
-  Colors,
-  DebugInstructions,
-  ReloadInstructions,
-} from 'react-native/Libraries/NewAppScreen';
+import {LearnMoreLinks, Colors} from 'react-native/Libraries/NewAppScreen';
 
-const App: () => React$Node = () => {
+const appNavigator = createStackNavigator();
+
+// function HomeScreen({navigation}) {
+//   return (
+//     <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
+//       <Text>Home Screen</Text>
+//       <Button
+//         title="Go to Details"
+//         onPress={() => navigation.navigate('Details')}
+//       />
+//     </View>
+//   );
+// }
+
+// function DetailsScreen({navigation}) {
+//   return (
+//     <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
+//       <Text>Details Screen</Text>
+//       <Button title="Go to Home" onPress={() => navigation.navigate('Home')} />
+//     </View>
+//   );
+// }
+
+function StackScreen() {
   return (
-    <>
-      <StatusBar barStyle="dark-content" />
-      <SafeAreaView>
-        <ScrollView
-          contentInsetAdjustmentBehavior="automatic"
-          style={styles.scrollView}>
-          <Header />
-          {global.HermesInternal == null ? null : (
-            <View style={styles.engine}>
-              <Text style={styles.footer}>Engine: Hermes</Text>
-            </View>
-          )}
-          <View style={styles.body}>
-            <View style={styles.sectionContainer}>
-              <Text style={styles.sectionTitle}>Step One</Text>
-              <Text style={styles.sectionDescription}>
-                Edit <Text style={styles.highlight}>App.js</Text> to change this
-                screen and then come back to see your edits.
-              </Text>
-            </View>
-            <View style={styles.sectionContainer}>
-              <Text style={styles.sectionTitle}>See Your Changes</Text>
-              <Text style={styles.sectionDescription}>
-                <ReloadInstructions />
-              </Text>
-            </View>
-            <View style={styles.sectionContainer}>
-              <Text style={styles.sectionTitle}>Debug</Text>
-              <Text style={styles.sectionDescription}>
-                <DebugInstructions />
-              </Text>
-            </View>
-            <View style={styles.sectionContainer}>
-              <Text style={styles.sectionTitle}>Learn More</Text>
-              <Text style={styles.sectionDescription}>
-                Read the docs to discover what to do next:
-              </Text>
-            </View>
-            <View style={styles.sectionContainer}>
-              <Text style={styles.sectionTitle}>This team rocks</Text>
-              <Text style={styles.sectionDescription}>
-                This is a test to see what this does:
-              </Text>
-            </View>
-            <LearnMoreLinks />
-          </View>
-        </ScrollView>
-      </SafeAreaView>
-    </>
+    <appNavigator.Navigator
+      screenOptions={{
+        headerStyle: {
+          backgroundColor: '#f4511e',
+        },
+        headerTintColor: '#fff',
+        headerTitleStyle: {
+          fontWeight: 'bold',
+        },
+      }}>
+      <appNavigator.Screen
+        name="Home"
+        component={HomeScreen}
+        options={{title: 'My home'}}
+      />
+    </appNavigator.Navigator>
   );
-};
+}
+
+function LogoTitle() {
+  return (
+    <Image
+      style={styles.tinyLogo}
+      source={{
+        uri:
+          'https://pbs.twimg.com/profile_images/575308227916603392/cx-yL1m-_400x400.jpeg',
+      }}
+    />
+  );
+}
+
+// const App: () => React$Node = () => {
+//   return (
+//     <NavigationContainer>
+//       <Header
+//         leftComponent={{icon: 'menu', color: '#fff'}}
+//         centerComponent={{text: 'MY TITLE', style: {color: '#fff'}}}
+//         rightComponent={{icon: 'home', color: '#fff'}}
+//       />
+//       <appNavigator.Navigator initialRouteName="Home">
+//         <appNavigator.Screen name="Home" component={HomeScreen} />
+//         <appNavigator.Screen name="AboutDrake" component={AboutScreen} />
+//       </appNavigator.Navigator>
+//     </NavigationContainer>
+//   );
+// };
+const Tab = createBottomTabNavigator();
+
+function App() {
+  return (
+    <NavigationContainer>
+      <Header
+        leftComponent={<LogoTitle />}
+        centerComponent={{text: 'A Day in the life', style: {color: '#fff'}}}
+        rightComponent={{color: '#fff'}}
+      />
+      <Tab.Navigator>
+        <Tab.Screen name="Home" component={HomeScreen} />
+        <Tab.Screen name="About Drake" component={AboutScreen} />
+      </Tab.Navigator>
+    </NavigationContainer>
+  );
+}
 
 const styles = StyleSheet.create({
   scrollView: {
@@ -86,12 +124,21 @@ const styles = StyleSheet.create({
     position: 'absolute',
     right: 0,
   },
+  tinyLogo: {
+    width: 60,
+    height: 60,
+  },
   body: {
     backgroundColor: Colors.white,
   },
   sectionContainer: {
     marginTop: 32,
     paddingHorizontal: 24,
+  },
+  sectionContainerTwo: {
+    marginTop: 32,
+    paddingHorizontal: 24,
+    backgroundColor: Colors.lighter,
   },
   sectionTitle: {
     fontSize: 24,
