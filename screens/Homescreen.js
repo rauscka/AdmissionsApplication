@@ -2,7 +2,7 @@ import React from 'react';
 import {StyleSheet, Text, View, Button} from 'react-native';
 
 export default class Homescreen extends React.Component {
-  static options = {
+  screenOptions = {
     headerText: 'Home Guyd',
     name: 'here',
   };
@@ -28,11 +28,11 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: '#00a1df',
+    // backgroundColor: '#00a1df',
   },
   info: {
     flex: 3,
-    backgroundColor: '#ffff32',
+    // backgroundColor: '#ffff32',
     flexDirection: 'row',
     justifyContent: 'center',
   },

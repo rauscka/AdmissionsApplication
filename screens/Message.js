@@ -1,17 +1,12 @@
 import React from 'react';
 import {StyleSheet, Text, View, Button} from 'react-native';
 
-export default class Aboutscreen extends React.Component {
+export default class Message extends React.Component {
   render() {
     const {navigate} = this.props.navigation;
     return (
       <View style={styles.container}>
-        <Text>About Drake</Text>
-        <Button title={'Dogtown'} onPress={() => navigate('Dogtown')} />
-        <Button
-          title={'Drake Traditions'}
-          onPress={() => navigate('Drake Traditions')}
-        />
+        <Text>Message Your Tour Guide</Text>
       </View>
     );
   }

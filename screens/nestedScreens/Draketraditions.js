@@ -1,17 +1,13 @@
 import React from 'react';
 import {StyleSheet, Text, View, Button} from 'react-native';
 
-export default class Aboutscreen extends React.Component {
+export default class Draketraditions extends React.Component {
   render() {
     const {navigate} = this.props.navigation;
     return (
       <View style={styles.container}>
-        <Text>About Drake</Text>
+        <Text>Drake Traditions</Text>
         <Button title={'Dogtown'} onPress={() => navigate('Dogtown')} />
-        <Button
-          title={'Drake Traditions'}
-          onPress={() => navigate('Drake Traditions')}
-        />
       </View>
     );
   }
@@ -22,6 +18,6 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
-    // backgroundColor: '#25ffe2',
+    backgroundColor: '#25ffe2',
   },
 });
