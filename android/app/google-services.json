@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "504940483339",
+    "firebase_url": "https://drake-admissions-app-database.firebaseio.com",
+    "project_id": "drake-admissions-app-database",
+    "storage_bucket": "drake-admissions-app-database.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:504940483339:android:cb7fd4b4606d4e5cd0480e",
+        "android_client_info": {
+          "package_name": "com.admissionsapplication"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "504940483339-4g198k0jd3negckm0d2887p40941ib70.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDnj3m_pmcejP2anLITYfsDgZRCj5eHBIA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "504940483339-4g198k0jd3negckm0d2887p40941ib70.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
