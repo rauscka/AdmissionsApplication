@@ -13,7 +13,13 @@ import React from 'react';
 import HomeScreen from './screens/Homescreen';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import AboutScreen from './screens/Aboutscreen';
+import DrakeTraditions from './screens/nestedScreens/Draketraditions';
+import DogTown from './screens/nestedScreens/Dogtown';
 import {Header} from 'react-native-elements';
+import Ionicons from 'react-native-vector-icons/Ionicons';
+import Message from './screens/Message';
+import Profile from './screens/Profile';
+import Settings from './screens/Settings';
 
 import {
   SafeAreaView,
@@ -26,51 +32,11 @@ import {
 } from 'react-native';
 
 import {LearnMoreLinks, Colors} from 'react-native/Libraries/NewAppScreen';
+import StackNavigator from '@react-navigation/stack/src/navigators/createStackNavigator';
 
-const appNavigator = createStackNavigator();
-
-// function HomeScreen({navigation}) {
-//   return (
-//     <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
-//       <Text>Home Screen</Text>
-//       <Button
-//         title="Go to Details"
-//         onPress={() => navigation.navigate('Details')}
-//       />
-//     </View>
-//   );
-// }
-
-// function DetailsScreen({navigation}) {
-//   return (
-//     <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
-//       <Text>Details Screen</Text>
-//       <Button title="Go to Home" onPress={() => navigation.navigate('Home')} />
-//     </View>
-//   );
-// }
-
-function StackScreen() {
-  return (
-    <appNavigator.Navigator
-      screenOptions={{
-        headerStyle: {
-          backgroundColor: '#f4511e',
-        },
-        headerTintColor: '#fff',
-        headerTitleStyle: {
-          fontWeight: 'bold',
-        },
-      }}>
-      <appNavigator.Screen
-        name="Home"
-        component={HomeScreen}
-        options={{title: 'My home'}}
-      />
-    </appNavigator.Navigator>
-  );
-}
-
+const Stack = createStackNavigator();
+const TopStack = createStackNavigator();
+const Tab = createBottomTabNavigator();
 function LogoTitle() {
   return (
     <Image
@@ -83,22 +49,15 @@ function LogoTitle() {
   );
 }
 
-// const App: () => React$Node = () => {
-//   return (
-//     <NavigationContainer>
-//       <Header
-//         leftComponent={{icon: 'menu', color: '#fff'}}
-//         centerComponent={{text: 'MY TITLE', style: {color: '#fff'}}}
-//         rightComponent={{icon: 'home', color: '#fff'}}
-//       />
-//       <appNavigator.Navigator initialRouteName="Home">
-//         <appNavigator.Screen name="Home" component={HomeScreen} />
-//         <appNavigator.Screen name="AboutDrake" component={AboutScreen} />
-//       </appNavigator.Navigator>
-//     </NavigationContainer>
-//   );
-// };
-const Tab = createBottomTabNavigator();
+function nestedAboutDrake() {
+  return (
+    <Stack.Navigator>
+      <Stack.Screen name="About Screen" component={AboutScreen} />
+      <Stack.Screen name="Dogtown" component={DogTown} />
+      <Stack.Screen name="Drake Traditions" component={DrakeTraditions} />
+    </Stack.Navigator>
+  );
+}
 
 function App() {
   return (
@@ -108,9 +67,30 @@ function App() {
         centerComponent={{text: 'A Day in the life', style: {color: '#fff'}}}
         rightComponent={{color: '#fff'}}
       />
-      <Tab.Navigator>
+      <Tab.Navigator
+        screenOptions={({route}) => ({
+          tabBarIcon: ({focused, color, size}) => {
+            let iconName;
+
+            if (route.name === 'Home') {
+              iconName = focused ? 'md-paw' : 'md-paw';
+            } else if (route.name === 'About Drake') {
+              iconName = focused ? 'ios-list-box' : 'ios-list';
+            } else if (route.name === 'Message') {
+              iconName = focused ? 'ios-chatbubbles' : 'ios-chatbubbles';
+            }
+
+            // You can return any component that you like here!
+            return <Ionicons name={iconName} size={size} color={color} />;
+          },
+        })}
+        tabBarOptions={{
+          activeTintColor: '#3b43ff',
+          inactiveTintColor: 'gray',
+        }}>
         <Tab.Screen name="Home" component={HomeScreen} />
-        <Tab.Screen name="About Drake" component={AboutScreen} />
+        <Tab.Screen name="About Drake" component={nestedAboutDrake} />
+        <Tab.Screen name="Message" component={Message} />
       </Tab.Navigator>
     </NavigationContainer>
   );
