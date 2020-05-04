@@ -1,6 +1,5 @@
 import React, {useState, useEffect} from 'react';
 import {StyleSheet, Text, View, Button, FlatList, ActivityIndicator} from 'react-native';
-//import {firebase, firestore} from '@react-native-firebase/firestore';
 import firestore from '@react-native-firebase/firestore';
 
 
@@ -40,8 +39,8 @@ function Users() {
             renderItem={({ item }) => (
                 <View style={{ height: 80, flex: 1, alignItems: 'center', justifyContent: 'center' }}>
                     <Text>User ID: {item.student_id}</Text>
-                    <Text>User Name: {item.first_name}</Text>
-                    <Text>User Name: {item.last_name}</Text>
+                    <Text>First Name: {item.first_name}</Text>
+                    <Text>Last Name: {item.last_name}</Text>
                 </View>
             )}
         />
