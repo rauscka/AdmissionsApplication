@@ -5,7 +5,7 @@ import { createStackNavigator } from 'react-navigation-stack'
 
 const AuthNavigation = createStackNavigator(
     {
-        Login: { screen: SignInScreen }
+        Login: { screen: SignInScreen , navigationOptions: {title: 'Drake Admissions App'}}
     },
     {
         initialRouteName: 'Login'

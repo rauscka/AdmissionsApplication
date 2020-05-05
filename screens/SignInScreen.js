@@ -1,5 +1,5 @@
 import React from 'react'
-import {StyleSheet, View, Button, TextInput, Image} from 'react-native'
+import {StyleSheet, View, Button, TextInput, Image, Text, ScrollView} from 'react-native'
 import auth from '@react-native-firebase/auth'
 
 function authenticate(email, password){
@@ -8,17 +8,6 @@ function authenticate(email, password){
     .then(() => {
         console.log('User account created & signed in!');
     })
-    .catch(error => {
-        if (error.code === 'auth/email-already-in-use') {
-            console.log('That email address is already in use!');
-        }
-
-        if (error.code === 'auth/invalid-email') {
-            console.log('That email address is invalid!');
-        }
-
-        console.error(error);
-    });
     return(true);
 }
 
@@ -54,8 +43,17 @@ export default class Login extends React.Component {
         const { email, password } = this.state
 
         return (
+            <View style={styles.containerTwo}>
+                <Text style={{fontSize: 40, fontWeight: "bold", marginTop: 30, marginBottom: 30}}>Sign In Below:</Text>
+                <Image
+                    style={styles.Pic}
+                    source={{
+                        uri:
+                            'https://upload.wikimedia.org/wikipedia/en/thumb/f/fc/Drake_Bulldogs_logo.svg/1200px-Drake_Bulldogs_logo.svg.png',
+                    }}
+                />
             <View style={styles.container}>
-                <View style={{ margin: 10 }}>
+                <View >
                     <TextInput
                         name='email'
                         value={email}
@@ -64,7 +62,7 @@ export default class Login extends React.Component {
                         onChangeText={this.handleEmailChange}
                     />
                 </View>
-                <View style={{ margin: 10 }}>
+                <View style={{marginBottom: 30}}>
                     <TextInput
                         name='password'
                         value={password}
@@ -75,6 +73,7 @@ export default class Login extends React.Component {
                 </View>
                 <Button title='Login' onPress={this.onLogin} />
             </View>
+            </View>
         )
     }
 }
@@ -82,10 +81,22 @@ export default class Login extends React.Component {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#befaf4',
+        //backgroundColor: '#dbf5f2',
+        backgroundColor: '#cfe9f3',
         alignItems: 'center',
         justifyContent: 'center'
-    }
+    },
+    containerTwo: {
+        flex: 1,
+        //backgroundColor: '#dbf5f2',
+        backgroundColor: '#cfe9f3',
+        alignItems: 'center',
+        justifyContent: 'center'
+    },
+    Pic: {
+        width: 200,
+        height: 220,
+    },
 })
 
 
