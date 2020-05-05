@@ -1,14 +1,54 @@
-import React from 'react'
+import React, {useEffect, useState} from 'react'
 import {StyleSheet, View, Button, TextInput, Image, Text, ScrollView} from 'react-native'
 import auth from '@react-native-firebase/auth'
 
-function authenticate(email, password){
+// function authenticate(email, password){
+//     let result = false;
+//     auth()
+//     .signInWithEmailAndPassword(email, password)
+//     .then(() => {
+//         result = true;
+//     })
+//     .catch(error => {
+//             if (error.code === 'auth/email-already-in-use') {
+//                 console.log('That email address is already in use!');
+//             }
+//
+//             if (error.code === 'auth/invalid-email') {
+//                 console.log('That email address is invalid!');
+//             }
+//
+//             console.error(error);
+//     })
+//     return(result);
+// }
+
+
+function status(email, password) {
+    // Set an initializing state whilst Firebase connects
+    const [initializing, setInitializing] = useState(true);
+    const [user, setUser] = useState();
+
     auth()
-    .signInWithEmailAndPassword(email, password)
-    .then(() => {
-        console.log('User account created & signed in!');
-    })
-    return(true);
+        .signInWithEmailAndPassword(email, password)
+
+    // Handle user state changes
+    function onAuthStateChanged(user) {
+        setUser(user);
+        if (initializing) setInitializing(false);
+    }
+
+    useEffect(() => {
+        const subscriber = auth().onAuthStateChanged(onAuthStateChanged);
+        return subscriber; // unsubscribe on unmount
+    }, []);
+
+    if (initializing) return null;
+
+    if (!user) {
+        return false;
+    }
+    return true;
 }
 
 
@@ -27,16 +67,25 @@ export default class Login extends React.Component {
         this.setState({ password })
     }
 
-    onLogin = async () => {
-        const { email, password } = this.state
-        try {
-            if (authenticate(email, password)) {
-                this.props.navigation.navigate('App')
-            }
+    // onLogin = async () => {
+    //     const { email, password } = this.state
+    //     try {
+    //         if (status(email, password)) {
+    //             this.props.navigation.navigate('App')
+    //         }
+    //
+    //     } catch (error) {
+    //         alert(error)
+    //     }
+    // }
 
-        } catch (error) {
-            alert(error)
-        }
+    onLogin = async() => {
+        const { email, password } = this.state
+
+        auth()
+            .signInWithEmailAndPassword(email, password)
+            .then(() => this.props.navigation.navigate('App'))
+            .catch(error => console.log(error))
     }
 
     render() {

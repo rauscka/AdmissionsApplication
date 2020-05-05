@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import {StyleSheet, Text, View, FlatList, ActivityIndicator, Button, ScrollView} from 'react-native';
 import firestore from '@react-native-firebase/firestore';
+import auth from '@react-native-firebase/auth';
 import Homescreen from './Homescreen'
 
 
@@ -8,10 +9,12 @@ function Schedule() {
     const [loading2, setLoading2] = useState(true); // Set loading to true on component mount
     const [schedule, setSchedule] = useState([]);
 
+    const user = auth().currentUser.email;
+
     useEffect(() => {
         const subscriber2 = firestore()
             .collection("schedule")
-            .where('prospective_student_id', '==', 1)
+            .where('prospective_student_email', '==', user)
             .onSnapshot(querySnapshot => {
                 const schedule = [];
 
