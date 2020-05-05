@@ -9,6 +9,7 @@ import Settings from "../screens/Settings";
 import Profile from "../screens/Profile";
 import StudentSchedule from "../screens/StudentSchedule";
 import {Button, Image, StyleSheet} from "react-native";
+import Ionicons from 'react-native-vector-icons/Ionicons';
 
 
 function LogoTitle() {
@@ -36,7 +37,27 @@ class AppNavigation extends React.Component {
                     centerComponent={{text: 'Drake Admissions App', style: {color: '#fff', fontWeight: "bold", fontSize: 20}}}
                     rightComponent={<Button title={'Log Out'} onPress={() => navigate('Auth')}/>}
                 />
-                <Tab.Navigator >
+                <Tab.Navigator
+                    screenOptions={({route}) => ({
+                        tabBarIcon: ({focused, color, size}) => {
+                            let iconName;
+
+                            if (route.name === 'Home') {
+                                iconName = focused ? 'md-paw' : 'md-paw';
+                            } else if (route.name === 'Schedule') {
+                                iconName = focused ? 'ios-list-box' : 'ios-list';
+                            } else if (route.name === 'Messaging') {
+                                iconName = focused ? 'ios-chatbubbles' : 'ios-chatbubbles';
+                            }
+
+                            // You can return any component that you like here!
+                            return <Ionicons name={iconName} size={size} color={color} />;
+                        },
+                    })}
+                    tabBarOptions={{
+                        activeTintColor: '#3b43ff',
+                        inactiveTintColor: 'gray',
+                    }}>
                     <Tab.Screen name="Home" component={HomeScreen}/>
                     <Tab.Screen name="Schedule" component={StudentSchedule}/>
                     <Tab.Screen name="Messaging" component={Message}/>
