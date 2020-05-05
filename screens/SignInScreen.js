@@ -20,7 +20,7 @@ function user_type(user_email) {
         return ('App2');
     }
 
-    if(user_email == "justin.berger@drake.edu"){
+    if(user_email == "justin.burger@drake.edu"){
         return ('App2');
     }
 
@@ -160,7 +160,7 @@ export default class Login extends React.Component {
         auth()
             .signInWithEmailAndPassword(email, password)
             .then(() => this.props.navigation.navigate(user_type(email)))
-            .catch(alert('Invalid username or password.'))
+            .catch()
     }
 
     render() {
