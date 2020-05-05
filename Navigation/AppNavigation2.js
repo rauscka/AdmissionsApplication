@@ -4,7 +4,7 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs"
 import {Header} from "react-native-elements";
 import HomeScreen from "../screens/Homescreen";
 import Message from "../screens/Message";
-import StudentSchedule from "../screens/StudentSchedule";
+import TourGuideSchedule from "../screens/TourGuideSchedule";
 import {Button, Image, StyleSheet} from "react-native";
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
@@ -24,7 +24,7 @@ function LogoTitle() {
 
 const Tab = createBottomTabNavigator();
 
-class AppNavigation extends React.Component {
+class AppNavigation2 extends React.Component {
     render() {
         const {navigate} = this.props.navigation;
         return (
@@ -56,7 +56,7 @@ class AppNavigation extends React.Component {
                         inactiveTintColor: 'gray',
                     }}>
                     <Tab.Screen name="Home" component={HomeScreen}/>
-                    <Tab.Screen name="Schedule" component={StudentSchedule}/>
+                    <Tab.Screen name="Schedule" component={TourGuideSchedule}/>
                     <Tab.Screen name="Message" component={Message}/>
                 </Tab.Navigator>
             </NavigationContainer>
@@ -71,4 +71,4 @@ const styles = StyleSheet.create({
     },
 });
 
-export default AppNavigation
+export default AppNavigation2
