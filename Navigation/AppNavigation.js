@@ -60,7 +60,7 @@ class AppNavigation extends React.Component {
                     }}>
                     <Tab.Screen name="Home" component={HomeScreen}/>
                     <Tab.Screen name="Schedule" component={StudentSchedule}/>
-                    <Tab.Screen name="Messaging" component={Message}/>
+                    <Tab.Screen name="Message" component={Message}/>
                 </Tab.Navigator>
             </NavigationContainer>
         );
