@@ -34,7 +34,7 @@ export default class Message extends React.Component {
       messages: [
         {
           _id: 1,
-          text: 'Hello!  Do you have any questions for me?',
+          text: 'Hello!',
           createdAt: new Date(),
           user: {
             _id: 2,

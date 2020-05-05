@@ -1,13 +1,15 @@
 import { createSwitchNavigator, createAppContainer } from 'react-navigation'
-import AuthNavigation from './AuthNavigation'
 import AppNavigation from './AppNavigation'
+import AuthNavigation from './AuthNavigation'
+import AppNavigation2 from './AppNavigation2'
 import React from 'react';
 
 
 const SwitchNavigator = createSwitchNavigator(
     {
         Auth: AuthNavigation,
-        App: AppNavigation
+        App: AppNavigation,
+        App2: AppNavigation2
     },
     {
         initialRouteName: 'Auth'

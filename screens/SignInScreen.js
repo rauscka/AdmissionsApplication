@@ -1,6 +1,93 @@
 import React, {useEffect, useState} from 'react'
-import {StyleSheet, View, Button, TextInput, Image, Text, ScrollView} from 'react-native'
+import {StyleSheet, View, Button, TextInput, Image, Text, ScrollView, ActivityIndicator, FlatList} from 'react-native'
 import auth from '@react-native-firebase/auth'
+import firestore from "@react-native-firebase/firestore";
+
+
+
+
+
+function user_type(user_email) {
+    if (user_email == "rebecca.dura@drake.edu"){
+        return ('App');
+    }
+
+    if (user_email == "marty.martin@drake.edu"){
+        return ('App');
+    }
+
+    if(user_email == "karl.rauschenberger@drake.edu"){
+        return ('App2');
+    }
+
+    if(user_email == "justin.berger@drake.edu"){
+        return ('App2');
+    }
+
+
+    // const [schedule, setSchedule] = useState([]);
+    //
+    // useEffect(() => {
+    //     const subscriber2 = firestore()
+    //         .collection("students")
+    //         .where('email', '==', user_email)
+    //         .onSnapshot(querySnapshot => {
+    //             const schedule = [];
+    //
+    //             querySnapshot.forEach(documentSnapshot => {
+    //                 //console.log('User ID: ', documentSnapshot.id, documentSnapshot.data());
+    //                 schedule.push({
+    //                     ...documentSnapshot.data(),
+    //                     key: documentSnapshot.id,
+    //                 });
+    //             });
+    //
+    //
+    //             setSchedule(schedule);
+    //         });
+    //
+    //     // Unsubscribe from events when no longer in use
+    //     return () => subscriber2();
+    // }, []);
+    //
+    // if (schedule.length > 0) {
+    //     return ('App');
+    // }
+
+
+
+
+
+
+
+    // const [schedule, setSchedule] = useState([]);
+    //
+    // firestore()
+    //     .collection('students')
+    //     .where('email', '==', user_email)
+    //     .get()
+    //     .then(querySnapshot => {
+    //         let student_size = querySnapshot.size;
+    //     });
+    //
+    // if (student_size > 0) {
+    //     return ('App');
+    // }
+    //
+    // const tour_guide = firestore()
+    //     .collection('tourGuides')
+    //     .where('email', '==', user_email)
+    //     .get();
+    //
+    //
+    // if (tour_guide != null) {
+    //     return ('App2');
+    // }
+
+}
+
+
+
 
 // function authenticate(email, password){
 //     let result = false;
@@ -24,32 +111,32 @@ import auth from '@react-native-firebase/auth'
 // }
 
 
-function status(email, password) {
-    // Set an initializing state whilst Firebase connects
-    const [initializing, setInitializing] = useState(true);
-    const [user, setUser] = useState();
-
-    auth()
-        .signInWithEmailAndPassword(email, password)
-
-    // Handle user state changes
-    function onAuthStateChanged(user) {
-        setUser(user);
-        if (initializing) setInitializing(false);
-    }
-
-    useEffect(() => {
-        const subscriber = auth().onAuthStateChanged(onAuthStateChanged);
-        return subscriber; // unsubscribe on unmount
-    }, []);
-
-    if (initializing) return null;
-
-    if (!user) {
-        return false;
-    }
-    return true;
-}
+// function status(email, password) {
+//     // Set an initializing state whilst Firebase connects
+//     const [initializing, setInitializing] = useState(true);
+//     const [user, setUser] = useState();
+//
+//     auth()
+//         .signInWithEmailAndPassword(email, password)
+//
+//     // Handle user state changes
+//     function onAuthStateChanged(user) {
+//         setUser(user);
+//         if (initializing) setInitializing(false);
+//     }
+//
+//     useEffect(() => {
+//         const subscriber = auth().onAuthStateChanged(onAuthStateChanged);
+//         return subscriber; // unsubscribe on unmount
+//     }, []);
+//
+//     if (initializing) return null;
+//
+//     if (!user) {
+//         return false;
+//     }
+//     return true;
+// }
 
 
 export default class Login extends React.Component {
@@ -67,24 +154,12 @@ export default class Login extends React.Component {
         this.setState({ password })
     }
 
-    // onLogin = async () => {
-    //     const { email, password } = this.state
-    //     try {
-    //         if (status(email, password)) {
-    //             this.props.navigation.navigate('App')
-    //         }
-    //
-    //     } catch (error) {
-    //         alert(error)
-    //     }
-    // }
-
     onLogin = async() => {
         const { email, password } = this.state
 
         auth()
             .signInWithEmailAndPassword(email, password)
-            .then(() => this.props.navigation.navigate('App'))
+            .then(() => this.props.navigation.navigate(user_type(email)))
             .catch(error => console.log(error))
     }
 
