@@ -46,7 +46,7 @@ class AppNavigation extends React.Component {
                                 iconName = focused ? 'md-paw' : 'md-paw';
                             } else if (route.name === 'Schedule') {
                                 iconName = focused ? 'ios-list-box' : 'ios-list';
-                            } else if (route.name === 'Messaging') {
+                            } else if (route.name === 'Message') {
                                 iconName = focused ? 'ios-chatbubbles' : 'ios-chatbubbles';
                             }
 
