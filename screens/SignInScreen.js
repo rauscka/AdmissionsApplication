@@ -160,7 +160,7 @@ export default class Login extends React.Component {
         auth()
             .signInWithEmailAndPassword(email, password)
             .then(() => this.props.navigation.navigate(user_type(email)))
-            .catch(error => console.log(error))
+            .catch(alert('Invalid username or password.'))
     }
 
     render() {
