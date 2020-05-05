@@ -4,6 +4,10 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs"
 import {Header} from "react-native-elements";
 import HomeScreen from "../screens/Homescreen";
 import AboutScreen from "../screens/Aboutscreen";
+import Message from "../screens/Message";
+import Settings from "../screens/Settings";
+import Profile from "../screens/Profile";
+import StudentSchedule from "../screens/StudentSchedule";
 import {Button, Image, StyleSheet} from "react-native";
 
 
@@ -29,12 +33,13 @@ class AppNavigation extends React.Component {
             <NavigationContainer>
                 <Header
                     leftComponent={<LogoTitle/>}
-                    centerComponent={{text: 'Drake Admissions App', style: {color: '#fff'}}}
+                    centerComponent={{text: 'Drake Admissions App', style: {color: '#fff', fontWeight: "bold", fontSize: 20}}}
                     rightComponent={<Button title={'Log Out'} onPress={() => navigate('Auth')}/>}
                 />
-                <Tab.Navigator>
+                <Tab.Navigator >
                     <Tab.Screen name="Home" component={HomeScreen}/>
-                    <Tab.Screen name="About Drake" component={AboutScreen}/>
+                    <Tab.Screen name="Schedule" component={StudentSchedule}/>
+                    <Tab.Screen name="Messaging" component={Message}/>
                 </Tab.Navigator>
             </NavigationContainer>
         );
