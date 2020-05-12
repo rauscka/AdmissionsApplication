@@ -1,3 +1,6 @@
+//This file is where the sign in screen is built.  It includes the functionality for Firebase
+//to authenticate the user and navigate to the student or tour guide view of the app depending on the user type.
+
 import React, {useEffect, useState} from 'react'
 import {StyleSheet, View, Button, TextInput, Image, Text, ScrollView, ActivityIndicator, FlatList} from 'react-native'
 import auth from '@react-native-firebase/auth'
@@ -6,8 +9,12 @@ import firestore from "@react-native-firebase/firestore";
 
 
 
-
+//This function determines whether to navigate to the student ('App') or tour guide ('App2') view of the app.
+//We were having some issues with the Firestore query not working correctly here, so unfortunately,
+//the user types are hardcoded in for now; however, the code below is extremely close to working, so they do
+//not need to be hardcoded.
 function user_type(user_email) {
+
     if (user_email == "rebecca.dura@drake.edu"){
         return ('App');
     }
@@ -20,125 +27,41 @@ function user_type(user_email) {
         return ('App2');
     }
 
-    if(user_email == "justin.berger@drake.edu"){
+    if(user_email == "justin.burger@drake.edu"){
         return ('App2');
     }
 
-
-    // const [schedule, setSchedule] = useState([]);
     //
-    // useEffect(() => {
-    //     const subscriber2 = firestore()
-    //         .collection("students")
-    //         .where('email', '==', user_email)
-    //         .onSnapshot(querySnapshot => {
-    //             const schedule = [];
+    // let num_documents = 0;
     //
-    //             querySnapshot.forEach(documentSnapshot => {
-    //                 //console.log('User ID: ', documentSnapshot.id, documentSnapshot.data());
-    //                 schedule.push({
-    //                     ...documentSnapshot.data(),
-    //                     key: documentSnapshot.id,
-    //                 });
-    //             });
-    //
-    //
-    //             setSchedule(schedule);
-    //         });
-    //
-    //     // Unsubscribe from events when no longer in use
-    //     return () => subscriber2();
-    // }, []);
-    //
-    // if (schedule.length > 0) {
-    //     return ('App');
-    // }
-
-
-
-
-
-
-
-    // const [schedule, setSchedule] = useState([]);
-    //
-    // firestore()
-    //     .collection('students')
-    //     .where('email', '==', user_email)
-    //     .get()
-    //     .then(querySnapshot => {
-    //         let student_size = querySnapshot.size;
+    // let query = async () => {await firestore().collection('tourGuides').where('email', '==', user_email)
+    //     .get().then(querySnapshot => {
+    //     querySnapshot.forEach(documentSnapshot => {
+    //         num_documents = querySnapshot.size;
     //     });
-    //
-    // if (student_size > 0) {
-    //     return ('App');
+    //     console.log(num_documents);
+    //     num_documents = querySnapshot.size;
+    //     return (num_documents);
+    //     })
+    // ;}
+    // //console.log(num_documents);
+    // //console.log(num_documents);
+    // if(query() == 0){
+    //     return('App2');
     // }
-    //
-    // const tour_guide = firestore()
-    //     .collection('tourGuides')
-    //     .where('email', '==', user_email)
-    //     .get();
-    //
-    //
-    // if (tour_guide != null) {
-    //     return ('App2');
-    // }
+    // //console.log(num_documents);
+    // // if(num_documents1){
+    // //     return('App2');
+    // // }
+    // //return('App2');
+
+
 
 }
 
 
 
-
-// function authenticate(email, password){
-//     let result = false;
-//     auth()
-//     .signInWithEmailAndPassword(email, password)
-//     .then(() => {
-//         result = true;
-//     })
-//     .catch(error => {
-//             if (error.code === 'auth/email-already-in-use') {
-//                 console.log('That email address is already in use!');
-//             }
-//
-//             if (error.code === 'auth/invalid-email') {
-//                 console.log('That email address is invalid!');
-//             }
-//
-//             console.error(error);
-//     })
-//     return(result);
-// }
-
-
-// function status(email, password) {
-//     // Set an initializing state whilst Firebase connects
-//     const [initializing, setInitializing] = useState(true);
-//     const [user, setUser] = useState();
-//
-//     auth()
-//         .signInWithEmailAndPassword(email, password)
-//
-//     // Handle user state changes
-//     function onAuthStateChanged(user) {
-//         setUser(user);
-//         if (initializing) setInitializing(false);
-//     }
-//
-//     useEffect(() => {
-//         const subscriber = auth().onAuthStateChanged(onAuthStateChanged);
-//         return subscriber; // unsubscribe on unmount
-//     }, []);
-//
-//     if (initializing) return null;
-//
-//     if (!user) {
-//         return false;
-//     }
-//     return true;
-// }
-
-
+//This class builds the actual sign in screen and navigates properly when the log in button is clicked.
 export default class Login extends React.Component {
 
     state = {
@@ -160,7 +83,7 @@ export default class Login extends React.Component {
         auth()
             .signInWithEmailAndPassword(email, password)
             .then(() => this.props.navigation.navigate(user_type(email)))
-            .catch(alert('Invalid username or password.'))
+            .catch()
     }
 
     render() {
@@ -202,6 +125,8 @@ export default class Login extends React.Component {
     }
 }
 
+
+//This sets up the page design.
 const styles = StyleSheet.create({
     container: {
         flex: 1,

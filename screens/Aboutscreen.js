@@ -1,3 +1,5 @@
+//This file is not currently being used by the app.
+
 import React, {useState, useEffect} from 'react';
 import {StyleSheet, Text, View, Button, FlatList, ActivityIndicator} from 'react-native';
 import firestore from '@react-native-firebase/firestore';

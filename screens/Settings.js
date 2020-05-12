@@ -1,3 +1,5 @@
+//This file is not currently being used by the app.
+
 import React from 'react';
 import {StyleSheet, Text, View, Button} from 'react-native';
 import Profile from './Profile'
