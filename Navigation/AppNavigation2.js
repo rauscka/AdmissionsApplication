@@ -1,3 +1,5 @@
+//This file is where the tour guide view of the app is created once a tour guide has logged in.
+
 import React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs"
@@ -9,6 +11,7 @@ import {Button, Image, StyleSheet} from "react-native";
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
 
+//This function creates the Drake logo in the top left corner of the header.
 function LogoTitle() {
     return (
         <Image
@@ -21,9 +24,13 @@ function LogoTitle() {
     );
 }
 
-
+//This is where we create the navigation bar on the bottom of the screen.
 const Tab = createBottomTabNavigator();
 
+//This class is where we create the basic navigation container for the student view, including the ability to
+//navigate between the home screen, schedule, and messages on the bottom navigator as well as the header at the
+//top of the screen where we can log out of the app.
+//This class also adds some icons to the three buttons on the bottom tab navigator.
 class AppNavigation2 extends React.Component {
     render() {
         const {navigate} = this.props.navigation;
@@ -64,6 +71,7 @@ class AppNavigation2 extends React.Component {
     }
 }
 
+//This is where we create the design for the logo in the header.
 const styles = StyleSheet.create({
     tinyLogo: {
         width: 60,

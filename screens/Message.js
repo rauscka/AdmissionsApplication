@@ -1,25 +1,8 @@
-// import React from 'react';
-// import {StyleSheet, Text, View, Button} from 'react-native';
-//
-// export default class Message extends React.Component {
-//   render() {
-//     const {navigate} = this.props.navigation;
-//     return (
-//       <View style={styles.container}>
-//         <Text>Message Your Tour Guide</Text>
-//       </View>
-//     );
-//   }
-// }
-//
-// const styles = StyleSheet.create({
-//   container: {
-//     flex: 1,
-//     alignItems: 'center',
-//     justifyContent: 'center',
-//     backgroundColor: '#cfe9f3',
-//   },
-// });
+//This file creates the messaging screen that is on both the student and tour guide views of the app.
+//The messaging is currently being set up through Gifted Chat, as it is easily integrated with React Native;
+//however, the messages are not currently stored properly.
+
+//In the file, it sets up the messages screen as well as the avatar for each person in the chat.
 
 import React from 'react'
 import { GiftedChat } from 'react-native-gifted-chat'

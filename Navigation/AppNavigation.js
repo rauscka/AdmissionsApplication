@@ -1,3 +1,5 @@
+//This file is where the student view of the app is created once a student has logged in.
+
 import React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs"
@@ -9,6 +11,7 @@ import {Button, Image, StyleSheet} from "react-native";
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
 
+//This function creates the Drake logo in the top left corner of the header.
 function LogoTitle() {
     return (
         <Image
@@ -22,8 +25,13 @@ function LogoTitle() {
 }
 
 
+//This is where we create the navigation bar on the bottom of the screen.
 const Tab = createBottomTabNavigator();
 
+//This class is where we create the basic navigation container for the student view, including the ability to
+//navigate between the home screen, schedule, and messages on the bottom navigator as well as the header at the
+//top of the screen where we can log out of the app.
+//This class also adds some icons to the three buttons on the bottom tab navigator.
 class AppNavigation extends React.Component {
     render() {
         const {navigate} = this.props.navigation;
@@ -38,7 +46,6 @@ class AppNavigation extends React.Component {
                     screenOptions={({route}) => ({
                         tabBarIcon: ({focused, color, size}) => {
                             let iconName;
-
                             if (route.name === 'Home') {
                                 iconName = focused ? 'md-paw' : 'md-paw';
                             } else if (route.name === 'Schedule') {
@@ -47,7 +54,6 @@ class AppNavigation extends React.Component {
                                 iconName = focused ? 'ios-chatbubbles' : 'ios-chatbubbles';
                             }
 
-                            // You can return any component that you like here!
                             return <Ionicons name={iconName} size={size} color={color} />;
                         },
                     })}
@@ -64,6 +70,7 @@ class AppNavigation extends React.Component {
     }
 }
 
+//This is where we create the design for the logo in the header.
 const styles = StyleSheet.create({
     tinyLogo: {
         width: 60,

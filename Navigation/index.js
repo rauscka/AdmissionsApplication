@@ -1,3 +1,7 @@
+//This file contains the switch navigator which allows for the app to switch between the sign in screen and
+//the student and tour guide views of the app.
+//The default is the sign in screen, as that is what we want users to view until they have been authenticated.
+
 import { createSwitchNavigator, createAppContainer } from 'react-navigation'
 import AppNavigation from './AppNavigation'
 import AuthNavigation from './AuthNavigation'

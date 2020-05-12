@@ -1,3 +1,5 @@
+//This file creates the schedule screen that is on the student view of the app.
+
 import React, {useState, useEffect} from 'react';
 import {StyleSheet, Text, View, FlatList, ActivityIndicator, Button, ScrollView} from 'react-native';
 import firestore from '@react-native-firebase/firestore';
@@ -5,6 +7,8 @@ import auth from '@react-native-firebase/auth';
 import Homescreen from './Homescreen'
 
 
+//This function pulls the student's schedule from the database in Firestore and returns it as a FlatList
+//component that is later integrated into the page.
 function Schedule() {
     const [loading2, setLoading2] = useState(true); // Set loading to true on component mount
     const [schedule, setSchedule] = useState([]);
@@ -97,7 +101,8 @@ function Schedule() {
 }
 
 
-
+//This class is where the schedule page is actually created.  It includes text, a button to navigate to the
+//home screen, and the list of activities for the student.
 export default class StudentSchedule extends React.Component {
     render() {
         const {navigate} = this.props.navigation;
@@ -115,6 +120,7 @@ export default class StudentSchedule extends React.Component {
     }
 }
 
+//This creates the page design.
 const styles = StyleSheet.create({
     container: {
         flex: 1,

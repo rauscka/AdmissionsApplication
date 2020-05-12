@@ -1,12 +1,14 @@
+//This file creates the home screen that is on both the student and tour guide views of the app.
+
 import React from 'react';
 import {StyleSheet, Text, View, Button, Image, ScrollView, Linking} from 'react-native';
 import {createBottomTabNavigator} from "@react-navigation/bottom-tabs";
 
+//This class is where the home screen is actually built, and it includes the functionality for users to scroll
+// on the home page.
+//It includes images, text, and hyperlinks for Drake websites.
 export default class Homescreen extends React.Component {
-  screenOptions = {
-    headerText: 'Home Guyd',
-    name: 'here',
-  };
+
   render() {
     const {navigate} = this.props.navigation;
     return (
@@ -74,6 +76,7 @@ export default class Homescreen extends React.Component {
   }
 }
 
+//This is where the page design is created.
 const styles = StyleSheet.create({
   container: {
     flex: 1,
