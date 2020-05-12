@@ -17,3 +17,4 @@ Currently, our app is only available for use on Android devices; however, functi
 Our app is for use by 3 different types of users: students, tour guides, and admissions counselors who are administrators.  Each user has access to different functionalities due to them accessing different user interfaces upon logging in.  Both students and tour guides can actually log into the mobile application, while administrators can access the Google Firebase console where the database and user accounts can be viewed or updated.
 
 We used Google Firebase to build a Cloud Firestore database.  This is a NoSQL database with 4 different collections (similar to a table/entity).  The 4 collections are as follows: students, tourGuides, admissionsCounselors, and schedule.  Each collection contains documents with fields.  For example, the student collection contains a document for each student with fields for their email, first name, last name, etc...
+
