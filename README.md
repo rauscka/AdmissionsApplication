@@ -3,10 +3,7 @@
 CS191- Computer Science Capstone Project
 Drake Admissions App
 
-Authors:
--Justin Burger (justin.burger@drake.edu)
--Becca Dura (rebecca.dura@drake.edu)
--Karl Rauschenberger (karl.rauschenberger@drake.edu)
+Authors: Justin Burger (justin.burger@drake.edu), Becca Dura (rebecca.dura@drake.edu), Karl Rauschenberger (karl.rauschenberger@drake.edu)
 
 This is the repository for our code that creates a mobile application for admissions as our Computer Science Capstone project, called the Drake Admissions App.
 
